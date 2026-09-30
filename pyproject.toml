@@ -1,0 +1,51 @@
+[build-system]
+requires = ["setuptools>=77"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "tensor-index-audit"
+version = "0.1.0"
+description = "Offline integrity checks for sharded Hugging Face checkpoints"
+readme = "README.md"
+requires-python = ">=3.10"
+license = "MIT"
+authors = [{name = "James"}]
+keywords = ["safetensors", "huggingface", "checkpoint", "llm", "model-weights"]
+classifiers = [
+  "Development Status :: 4 - Beta",
+  "Environment :: Console",
+  "Intended Audience :: Developers",
+  "Operating System :: OS Independent",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3.10",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+  "Programming Language :: Python :: 3.13",
+  "Programming Language :: Python :: 3.14",
+  "Topic :: Scientific/Engineering :: Artificial Intelligence",
+]
+dependencies = []
+
+[project.scripts]
+tensor-index-audit = "tensor_index_audit.cli:main"
+
+[project.optional-dependencies]
+dev = ["pytest>=8", "ruff>=0.11", "mypy>=1.15", "safetensors>=0.6", "build>=1.2"]
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py310"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B"]
+
+[tool.mypy]
+python_version = "3.10"
+strict = true
+files = ["src"]
